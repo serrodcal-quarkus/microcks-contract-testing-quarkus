@@ -1,11 +1,11 @@
 ---
 openapi: 3.0.3
 info:
-  title: Employee API (development)
-  description: Employee service
+  title: Department API (development)
+  description: Department service
   termsOfService: Your terms here
   contact:
-    name: Employee API Support
+    name: Department API Support
     url: http://exampleurl.com/contact
     email: techsupport@example.com
   license:
@@ -13,7 +13,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   version: 1.0.0
 paths:
-  /api/v1/employee:
+  /api/v1/department:
     get:
       responses:
         "200":
@@ -23,16 +23,35 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Employee'
+                  $ref: '#/components/schemas/Department'
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Department'
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                format: int32
+                type: integer
     post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Department'
       responses:
         "200":
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Employee'
-  /api/v1/employee/department/{deptId}:
+                $ref: '#/components/schemas/Department'
+  /api/v1/department/{id}:
     get:
       responses:
         "200":
@@ -40,18 +59,7 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Employee'
-  /api/v1/employee/{id}:
-    get:
-      responses:
-        "200":
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Employee'
+                $ref: '#/components/schemas/Department'
     delete:
       responses:
         "200":
@@ -62,7 +70,7 @@ paths:
                 type: boolean
 components:
   schemas:
-    Employee:
+    Department:
       type: object
       properties:
         id:
@@ -70,6 +78,3 @@ components:
           type: integer
         name:
           type: string
-        deptId:
-          format: int64
-          type: integer
