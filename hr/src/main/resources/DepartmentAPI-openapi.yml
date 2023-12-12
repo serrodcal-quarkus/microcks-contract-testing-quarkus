@@ -1,0 +1,80 @@
+---
+openapi: 3.0.3
+info:
+  title: Department API (development)
+  description: Department service
+  termsOfService: Your terms here
+  contact:
+    name: Department API Support
+    url: http://exampleurl.com/contact
+    email: techsupport@example.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.0
+paths:
+  /api/v1/department:
+    get:
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Department'
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Department'
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                format: int32
+                type: integer
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Department'
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Department'
+  /api/v1/department/{id}:
+    get:
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Department'
+    delete:
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: boolean
+components:
+  schemas:
+    Department:
+      type: object
+      properties:
+        id:
+          format: int64
+          type: integer
+        name:
+          type: string

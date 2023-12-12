@@ -1,0 +1,75 @@
+---
+openapi: 3.0.3
+info:
+  title: Employee API (development)
+  description: Employee service
+  termsOfService: Your terms here
+  contact:
+    name: Employee API Support
+    url: http://exampleurl.com/contact
+    email: techsupport@example.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.0
+paths:
+  /api/v1/employee:
+    get:
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Employee'
+    post:
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Employee'
+  /api/v1/employee/department/{deptId}:
+    get:
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Employee'
+  /api/v1/employee/{id}:
+    get:
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Employee'
+    delete:
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: boolean
+components:
+  schemas:
+    Employee:
+      type: object
+      properties:
+        id:
+          format: int64
+          type: integer
+        name:
+          type: string
+        deptId:
+          format: int64
+          type: integer

@@ -29,7 +29,6 @@ public class DepartmentResource {
 
     @Route(path = "department", methods = HttpMethod.GET)
     @Timeout(1000)
-    @Retry(maxRetries = 4)
     Uni<List<Department>> getDepartments() {
         logger.info("getDepartments");
         return this.departmentService.getDepartments();
@@ -38,7 +37,6 @@ public class DepartmentResource {
 
     @Route(path = "department/:id", methods = HttpMethod.GET)
     @Timeout(1000)
-    @Retry(maxRetries = 4)
     Uni<Department> getDepartment(@Param Long id) {
         logger.info("getDepartment with [id:" + id.toString() + "]");
         return this.departmentService.getDepartment(id);
@@ -46,7 +44,6 @@ public class DepartmentResource {
 
     @Route(path = "department", methods = HttpMethod.POST)
     @Timeout(1000)
-    @Retry(maxRetries = 4)
     Uni<Department> createDepartment(@Body Department department) {
         logger.info("createDepartment with [name:" + department.name + "]");
         return this.departmentService.createDepartment(department);
@@ -54,7 +51,6 @@ public class DepartmentResource {
 
     @Route(path = "department", methods = HttpMethod.PUT)
     @Timeout(1000)
-    @Retry(maxRetries = 4)
     Uni<Integer> updateDepartment(@Body Department department) {
         logger.info("updateDepartment with [name:" + department.name + "]");
         return this.departmentService.updateDepartment(department);
@@ -62,7 +58,6 @@ public class DepartmentResource {
 
     @Route(path = "department/:id", methods = HttpMethod.DELETE)
     @Timeout(1000)
-    @Retry(maxRetries = 4)
     Uni<Boolean> deleteDepartment(@Param Long id) {
         logger.info("deleteDepartment wit [id:" + id.toString() + "]");
         return this.departmentService.deleteDepartment(id);

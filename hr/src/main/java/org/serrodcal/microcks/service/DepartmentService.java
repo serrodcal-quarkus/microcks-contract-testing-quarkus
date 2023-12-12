@@ -10,7 +10,7 @@ import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 import org.serrodcal.microcks.domain.Department;
 
 @Path("/department")
-@RegisterRestClient
+@RegisterRestClient(configKey="department-api")
 public interface DepartmentService {
 
     @GET

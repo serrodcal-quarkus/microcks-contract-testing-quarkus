@@ -14,7 +14,7 @@ import org.serrodcal.microcks.domain.Employee;
 import java.util.Set;
 
 @Path("/employee")
-@RegisterRestClient
+@RegisterRestClient(configKey="employee-api")
 public interface EmployeeService {
 
     @GET

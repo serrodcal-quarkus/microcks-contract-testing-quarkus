@@ -38,10 +38,7 @@ public class EmployeeService {
     @CircuitBreaker(requestVolumeThreshold = 4)
     @WithTransaction
     public Uni<Integer> updateEmployee(Employee employee) { 
-        return employeeRepository.update(
-            "name = :name, deptId = :deptId", 
-            Parameters.with("name", employee.name).and("deptId", employee.deptId)
-        ); 
+        return employeeRepository.update("deptId = " + employee.deptId.toString() + " where id = ?1", employee.id);
     }
 
     @CircuitBreaker(requestVolumeThreshold = 4)

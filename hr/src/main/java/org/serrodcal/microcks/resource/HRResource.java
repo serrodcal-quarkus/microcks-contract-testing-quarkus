@@ -24,7 +24,6 @@ public class HRResource {
 
     @Route(path = "hr/employee/:employeeId/assign/department/:deptId", methods = HttpMethod.POST)
     @Timeout(1000)
-    @Retry(maxRetries = 4)
     Uni<Integer> assignEmployeeToDept(@Param Long employeeId, @Param Long deptId) {
         logger.info("assignEmployeeToDept with [employeeId:" + employeeId + ", dept:" + deptId + "]");
         return this.hrService.assignEmployeeToDept(employeeId, deptId);
@@ -32,7 +31,6 @@ public class HRResource {
 
     @Route(path = "hr/employee/:employeeId/unassign", methods = HttpMethod.DELETE)
     @Timeout(1000)
-    @Retry(maxRetries = 4)
     Uni<Integer> unassignEmployee(@Param Long id) {
         logger.info("unassignEmployeeToDept wit [id:" + id + "]");
         return this.hrService.unassignEmployee(id);

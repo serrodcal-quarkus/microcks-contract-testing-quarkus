@@ -28,7 +28,6 @@ public class EmployeeResource {
 
     @Route(path = "employee", methods = HttpMethod.GET)
     @Timeout(1000)
-    @Retry(maxRetries = 4)
     Uni<List<Employee>> getEmployees() {
         logger.info("getEmployees");
         return this.employeeService.getEmployees();
@@ -37,7 +36,6 @@ public class EmployeeResource {
 
     @Route(path = "employee/:id", methods = HttpMethod.GET)
     @Timeout(1000)
-    @Retry(maxRetries = 4)
     Uni<Employee> getEmployee(@Param Long id) {
         logger.info("getEmployee with [id:" + id.toString() + "]");
         return this.employeeService.getEmployee(id);
@@ -45,7 +43,6 @@ public class EmployeeResource {
 
     @Route(path = "employee/department/:deptId", methods = HttpMethod.GET)
     @Timeout(1000)
-    @Retry(maxRetries = 4)
     Uni<List<Employee>> getEmployeesByDept(@Param Long deptId) {
         logger.info("getEmployeesByDept with [deptId: " + deptId.toString() + "]");
         return this.employeeService.getEmployeesByDept(deptId);
@@ -53,15 +50,20 @@ public class EmployeeResource {
 
     @Route(path = "employee", methods = HttpMethod.POST)
     @Timeout(1000)
-    @Retry(maxRetries = 4)
     Uni<Employee> createEmployee(@Body Employee employee) {
         logger.info("createEmployee with [name:" + employee.name + "]");
         return this.employeeService.createEmployee(employee);
     }
 
+    @Route(path = "employee", methods = HttpMethod.PUT)
+    @Timeout(1000)
+    Uni<Integer> updateEmployee(@Body Employee employee) {
+        logger.info("updateEmployee with [name:" + employee.name + "]");
+        return this.employeeService.updateEmployee(employee);
+    }
+
     @Route(path = "employee/:id", methods = HttpMethod.DELETE)
     @Timeout(1000)
-    @Retry(maxRetries = 4)
     Uni<Boolean> deleteEmployee(@Param Long id) {
         logger.info("deleteEmployee wit [id:" + id.toString() + "]");
         return this.employeeService.deleteEmployee(id);
